@@ -1,0 +1,710 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#F5EDE1">
+<title>Les 5 Portes de ton Âme — Les soins de lumière d'Aurore</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --ivory:#F5EDE1;
+  --light:#FBF6EE;
+  --brown:#4A3022;
+  --dark:#22160F;
+  --copper:#A87443;
+  --gold:#D9B47E;
+  --pale:#E6C79A;
+}
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  margin:0;
+  min-height:100vh;
+  background:var(--ivory);
+  color:var(--brown);
+  font-family:"DM Sans",sans-serif;
+  line-height:1.65;
+}
+body::before {
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 10% 5%,rgba(230,199,154,.3),transparent 35%),
+    radial-gradient(circle at 90% 90%,rgba(168,116,67,.12),transparent 40%);
+}
+.app {
+  position:relative;
+  width:min(100%,720px);
+  margin:auto;
+  padding:25px 18px 65px;
+}
+.brand {
+  text-align:center;
+  font-size:10px;
+  letter-spacing:2.4px;
+  text-transform:uppercase;
+  margin-bottom:25px;
+}
+h1,h2,h3 {
+  font-family:"Cormorant Garamond",serif;
+  line-height:1.1;
+  font-weight:600;
+}
+h1 { font-size:clamp(44px,9vw,68px); margin:12px 0; }
+h2 { font-size:clamp(36px,7vw,52px); margin:12px 0; }
+h3 { font-size:28px; margin:12px 0; }
+p { margin:12px 0; }
+.small { font-size:13px; opacity:.75; }
+.center { text-align:center; }
+.gold { color:var(--copper); }
+.star {
+  color:var(--copper);
+  font-size:26px;
+  letter-spacing:9px;
+  text-align:center;
+}
+.panel {
+  background:rgba(251,246,238,.88);
+  border:1px solid rgba(168,116,67,.28);
+  border-radius:24px;
+  padding:clamp(23px,5vw,42px);
+  box-shadow:0 12px 45px rgba(74,48,34,.07);
+  margin:20px 0;
+}
+.ornament {
+  width:95px;
+  height:1px;
+  margin:22px auto;
+  background:linear-gradient(90deg,transparent,var(--copper),transparent);
+}
+.btn {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  width:100%;
+  padding:15px 20px;
+  border-radius:50px;
+  border:1px solid var(--brown);
+  background:var(--brown);
+  color:var(--light);
+  font-family:"DM Sans",sans-serif;
+  font-size:13px;
+  font-weight:600;
+  cursor:pointer;
+  transition:transform .2s,background .2s;
+  text-decoration:none;
+  margin-top:12px;
+}
+.btn:active { transform:scale(.98); }
+.btn.secondary {
+  background:transparent;
+  color:var(--brown);
+  border-color:var(--copper);
+}
+.btn:focus-visible,.door:focus-visible,textarea:focus-visible {
+  outline:3px solid var(--copper);
+  outline-offset:3px;
+}
+.screen { display:none; animation:appear .45s ease both; }
+.screen.active { display:block; }
+@keyframes appear {
+  from { opacity:0; transform:translateY(15px); }
+  to { opacity:1; transform:translateY(0); }
+}
+.doors {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:13px;
+  margin:25px 0;
+}
+.door {
+  position:relative;
+  min-height:175px;
+  background:linear-gradient(145deg,#FBF6EE,#EAD8BE);
+  border:1px solid var(--gold);
+  border-radius:90px 90px 15px 15px;
+  padding:25px 12px 16px;
+  text-align:center;
+  color:var(--brown);
+  cursor:pointer;
+  box-shadow:inset 0 0 0 5px rgba(255,255,255,.35);
+  transition:transform .25s,box-shadow .25s;
+}
+.door:hover,.door.selected {
+  transform:translateY(-4px);
+  box-shadow:0 12px 30px rgba(168,116,67,.18),
+    inset 0 0 0 5px rgba(255,255,255,.35);
+}
+.door.selected { outline:2px solid var(--copper); }
+.door .symbol { display:block; font-size:25px; color:var(--copper); }
+.door .num {
+  display:block;
+  font:600 54px "Cormorant Garamond",serif;
+}
+.door .name { font-size:12px; }
+.door:last-child {
+  grid-column:1/-1;
+  max-width:240px;
+  width:100%;
+  margin:auto;
+}
+.progress {
+  display:flex;
+  gap:6px;
+  margin:20px 0 28px;
+}
+.progress span {
+  flex:1;
+  height:4px;
+  background:#E4D5C4;
+  border-radius:5px;
+}
+.progress span.done { background:var(--copper); }
+.question {
+  margin:25px 0;
+}
+.question label {
+  display:block;
+  font-size:14px;
+  font-weight:600;
+  margin-bottom:10px;
+}
+textarea {
+  width:100%;
+  min-height:105px;
+  resize:vertical;
+  padding:15px;
+  background:#FFFCF7;
+  color:var(--brown);
+  border:1px solid #DCC6AA;
+  border-radius:13px;
+  font:14px "DM Sans",sans-serif;
+  line-height:1.6;
+}
+.ritual {
+  border-left:2px solid var(--copper);
+  padding-left:20px;
+  margin:25px 0;
+}
+.quote {
+  font:italic 600 29px/1.3 "Cormorant Garamond",serif;
+  text-align:center;
+  padding:22px 8px;
+  color:var(--brown);
+}
+.tag {
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:2px;
+  color:var(--copper);
+  font-weight:600;
+}
+.footer {
+  text-align:center;
+  font-size:11px;
+  opacity:.65;
+  margin-top:45px;
+}
+@media(min-width:600px) {
+  .doors { grid-template-columns:repeat(5,1fr); }
+  .door { min-height:170px; padding:24px 6px 14px; }
+  .door .num { font-size:42px; }
+  .door:last-child { grid-column:auto; }
+}
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after {
+    animation-duration:.01ms!important;
+    transition-duration:.01ms!important;
+  }
+}
+</style>
+</head>
+
+<body>
+<main class="app">
+  <div class="brand">✦ Les soins de lumière d'Aurore ✦</div>
+
+  <section class="screen active" id="welcome">
+    <div class="panel center">
+      <div class="star">✧ ✦ ✧</div>
+      <h1>Les 5 Portes<br>de ton Âme</h1>
+      <div class="ornament"></div>
+      <p style="font-family:'Cormorant Garamond',serif;font-size:24px">
+        Une parenthèse pour t'écouter, te retrouver
+        et avancer à ton rythme.
+      </p>
+      <p>Tu as mis la vidéo sur pause et un numéro est apparu.</p>
+      <p>Et si tu prenais quelques minutes pour écouter
+      ce qu'il fait résonner en toi ?</p>
+      <p>Derrière chaque numéro se cache une invitation
+      à regarder quelque chose différemment.</p>
+      <p class="small">Pas de bonne ou de mauvaise réponse.
+      Juste un moment pour toi.</p>
+      <button class="btn" onclick="show('choose')">
+        Découvrir ma porte ✨
+      </button>
+    </div>
+  </section>
+
+  <section class="screen" id="choose">
+    <div class="center">
+      <div class="star">✧ ✦ ✧</div>
+      <h2>Quelle porte t'attend ?</h2>
+      <p>Sélectionne le numéro obtenu dans ton Réel.</p>
+    </div>
+    <div class="doors" id="doors"></div>
+    <button class="btn" id="enterBtn" onclick="start()" disabled>
+      Ouvrir ma porte
+    </button>
+    <button class="btn secondary" onclick="show('welcome')">
+      Retour
+    </button>
+  </section>
+
+  <section class="screen" id="journey">
+    <div class="progress" id="progress"></div>
+    <div class="panel">
+      <div class="center">
+        <div class="tag" id="stepLabel"></div>
+        <h2 id="stepTitle"></h2>
+        <div class="ornament"></div>
+      </div>
+      <div id="stepContent"></div>
+      <button class="btn" id="nextBtn" onclick="nextStep()">
+        Continuer ✨
+      </button>
+      <button class="btn secondary" onclick="previousStep()">
+        Revenir en arrière
+      </button>
+    </div>
+  </section>
+
+  <section class="screen" id="ending">
+    <div class="panel center">
+      <div class="star">✧ ✦ ✧</div>
+      <h2>Et maintenant,<br>qu'est-ce que tu choisis pour toi ?</h2>
+      <div class="ornament"></div>
+      <p>Tu viens de prendre quelques minutes pour t'écouter.</p>
+      <p>Peut-être qu'une question t'a fait réfléchir,
+      qu'une phrase a résonné ou que tu as simplement réalisé
+      que tu avais besoin de t'accorder davantage de place.</p>
+      <p>Garde ce qui te parle. Laisse le reste.</p>
+      <p>Tu n'as pas besoin de tout changer aujourd'hui.
+      Un petit pas, c'est déjà un mouvement. 🤎</p>
+      <div class="ornament"></div>
+      <h3 id="offerTitle"></h3>
+      <p id="offerText"></p>
+      <button class="btn" onclick="copyAnswers()">
+        Copier mon carnet personnel
+      </button>
+      <button class="btn secondary" onclick="show('choose')">
+        Explorer une autre porte
+      </button>
+    </div>
+  </section>
+
+  <footer class="footer">
+    © Les soins de lumière d'Aurore<br>
+    Un espace d'introspection, dans le respect de ton libre arbitre.
+  </footer>
+</main>
+
+<script>
+const data = {
+  "22": {
+    name:"Me libérer",
+    title:"Je dépose ce qui ne m'appartient pas",
+    message:`Tu es peut-être devenue celle sur qui tout le monde
+    peut compter. Celle qui écoute, rassure, trouve des solutions,
+    même quand elle-même n'en peut plus.
+
+    Mais tu sais quoi ? Être là pour les autres ne devrait pas
+    signifier t'oublier.
+
+    Tu peux aimer profondément quelqu'un sans porter toutes
+    ses difficultés. Tu peux être présente sans être disponible
+    tout le temps.
+
+    Aujourd'hui, je t'invite à te demander :
+    et moi, de quoi j'ai besoin ?`,
+    questions:[
+      "Quelle responsabilité prends-tu aujourd'hui alors qu'elle ne t'appartient pas vraiment ?",
+      "À quel moment as-tu dit oui alors que tu aurais préféré dire non ?",
+      "Qu'est-ce que tu pourrais déposer dès aujourd'hui pour te sentir plus légère ?"
+    ],
+    ritualTitle:"Les mains ouvertes",
+    ritual:`Installe-toi confortablement. Ferme les yeux
+    si tu en as envie.
+
+    Imagine que tu tiens dans tes mains toutes les attentes
+    que tu portes.
+
+    Inspire doucement, puis ouvre tes mains en expirant.
+
+    Répète ce geste trois fois en te disant :
+    « Je peux être présente sans tout porter. »`,
+    affirmation:"Je m'autorise à poser mes limites. Je peux aimer les autres sans m'oublier.",
+    action:"Refuse une petite demande que tu n'as pas réellement envie ou la capacité d'accepter, sans te justifier longuement.",
+    offer:"Retour à soi",
+    offerText:"Un soin énergétique à distance pour t'offrir une parenthèse de recentrage et prendre du temps pour toi."
+  },
+  "33": {
+    name:"M'écouter",
+    title:"J'apprends à écouter ma voix intérieure",
+    message:`Tu as peut-être cette sensation qu'une partie de toi
+    connaît déjà la réponse, mais tu continues à chercher
+    des confirmations partout.
+
+    Tu demandes des avis, tu analyses chaque détail,
+    tu imagines mille scénarios.
+
+    Et à force d'écouter tout le monde, tu finis par ne plus
+    savoir ce que toi, tu veux vraiment.
+
+    Tu n'as pas besoin d'avoir toutes les réponses aujourd'hui.
+
+    Mais tu peux commencer par accorder un peu plus de place
+    à ce que tu ressens.`,
+    questions:[
+      "Quelle situation revient régulièrement dans tes pensées ?",
+      "Qu'aimerais-tu faire si tu n'avais pas peur de te tromper ou de décevoir ?",
+      "Quelle petite décision pourrais-tu prendre sans demander l'avis de quelqu'un d'autre ?"
+    ],
+    ritualTitle:"La réponse intérieure",
+    ritual:`Prends une feuille et écris cette phrase :
+
+    « Si j'arrêtais de chercher la bonne réponse,
+    qu'est-ce que j'aurais envie de choisir ? »
+
+    Écris pendant deux minutes, sans corriger tes mots.
+
+    Puis relis-toi et souligne la phrase qui te parle le plus.`,
+    affirmation:"Je peux m'écouter, même lorsque je doute. Ma voix mérite d'être entendue.",
+    action:"Prends une petite décision uniquement à partir de tes propres préférences.",
+    offer:"ÂmeOscope",
+    offerText:"Une cartographie intuitive et personnalisée de ton monde intérieur pour explorer tes questionnements, tes blocages et tes ressources."
+  },
+  "44": {
+    name:"Reconnaître ma valeur",
+    title:"Je reconnais ma valeur",
+    message:`Et si tu arrêtais de mesurer ta valeur
+    à tout ce que tu fais pour les autres ?
+
+    Tu n'as pas besoin d'être parfaite, toujours disponible,
+    toujours forte ou toujours productive pour mériter
+    d'être aimée et respectée.
+
+    Peut-être que tu as appris à chercher ta place
+    en faisant toujours plus.
+
+    Mais tu as aussi le droit d'exister sans devoir
+    constamment prouver quelque chose.`,
+    questions:[
+      "Dans quelle situation ressens-tu le besoin de prouver ta valeur ?",
+      "Quel compliment as-tu tendance à minimiser ?",
+      "Quelle qualité reconnais-tu facilement chez les autres, mais difficilement chez toi ?"
+    ],
+    ritualTitle:"Le regard bienveillant",
+    ritual:`Prends un miroir ou imagine-toi face à toi-même.
+
+    Observe ton visage sans chercher à corriger quoi que ce soit.
+
+    Dis doucement :
+    « Je n'ai pas besoin d'être parfaite pour avoir de la valeur. »
+
+    Puis note trois qualités qui t'appartiennent,
+    indépendamment de tes réussites.`,
+    affirmation:"Ma valeur ne dépend pas de ce que j'accomplis. J'ai le droit de prendre ma place.",
+    action:"Accepte un compliment sans le minimiser. Un simple « merci » suffit.",
+    offer:"Alchimie Cellulaire",
+    offerText:"Un accompagnement énergétique et introspectif pour explorer les croyances et schémas que tu souhaites transformer."
+  },
+  "26": {
+    name:"Retrouver mon chemin",
+    title:"Je reconnais le chemin parcouru",
+    message:`Tu regardes peut-être tout ce qu'il te reste à faire,
+    tout ce que tu n'as pas encore réussi,
+    tout ce que tu pensais avoir accompli à ce stade de ta vie.
+
+    Mais est-ce que tu prends parfois le temps de regarder
+    tout ce que tu as déjà traversé ?
+
+    Tu as appris, changé, recommencé, tenu bon dans des moments
+    que personne n'a forcément vus.
+
+    Tu n'es pas obligée d'avancer au rythme des autres.`,
+    questions:[
+      "Quelle difficulté as-tu réussi à traverser ces derniers mois ?",
+      "De quoi pourrais-tu être fière, même si cela te semble insignifiant ?",
+      "Qu'aimerais-tu arrêter de comparer chez toi ?"
+    ],
+    ritualTitle:"La carte de ton chemin",
+    ritual:`Dessine une ligne sur une feuille.
+
+    Place trois moments importants de ton année :
+    une difficulté traversée, une prise de conscience
+    et une petite victoire.
+
+    Regarde cette ligne.
+
+    Elle raconte aussi tout ce que tu as accompli.`,
+    affirmation:"Je respecte mon rythme. Mon chemin a de la valeur, même lorsqu'il ne ressemble pas à celui des autres.",
+    action:"Écris trois petites victoires récentes dans ton téléphone.",
+    offer:"ÂmeOscope",
+    offerText:"Un voyage intuitif à travers ton monde intérieur pour mieux comprendre ce que tu traverses et retrouver tes propres repères."
+  },
+  "76": {
+    name:"Accueillir le changement",
+    title:"Je m'autorise à évoluer",
+    message:`Il y a peut-être des choses auxquelles tu t'accroches
+    simplement parce qu'elles ont longtemps fait partie de ta vie.
+
+    Une habitude, une relation, un projet,
+    une ancienne version de toi.
+
+    Et même lorsque tu sens que quelque chose
+    ne te correspond plus, changer peut faire peur.
+
+    Mais tu n'es pas obligée de rester
+    la même personne toute ta vie.
+
+    Tu peux remercier ce qui a existé
+    et choisir une direction différente.`,
+    questions:[
+      "Qu'est-ce qui ne te correspond plus autant qu'avant ?",
+      "Qu'as-tu peur de perdre si tu décides de changer ?",
+      "Quelle nouvelle habitude ou envie aimerais-tu accueillir ?"
+    ],
+    ritualTitle:"La page qui se tourne",
+    ritual:`Sur une feuille, écris :
+
+    « Je me donne la permission de ne plus… »
+
+    Complète librement cette phrase.
+
+    Puis écris :
+    « Aujourd'hui, j'aimerais m'autoriser à… »
+
+    Garde cette deuxième phrase dans un endroit
+    où tu pourras la relire.`,
+    affirmation:"J'ai le droit de changer. Je peux avancer sans renier la personne que j'ai été.",
+    action:"Fais un petit geste concret en direction de ce que tu souhaites accueillir.",
+    offer:"Alchimie Cellulaire",
+    offerText:"Un espace d'accompagnement pour explorer ce que tu souhaites laisser derrière toi et les nouvelles intentions que tu veux poser."
+  }
+};
+
+let selected=null;
+let step=0;
+const totalSteps=5;
+const answers={};
+
+function show(id) {
+  document.querySelectorAll(".screen").forEach(s=>{
+    s.classList.remove("active");
+  });
+  document.getElementById(id).classList.add("active");
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function initDoors() {
+  const holder=document.getElementById("doors");
+  holder.innerHTML="";
+  Object.entries(data).forEach(([num,item])=>{
+    const btn=document.createElement("button");
+    btn.className="door";
+    btn.type="button";
+    btn.innerHTML=`
+      <span class="symbol">✧</span>
+      <span class="num">${num}</span>
+      <span class="name">${item.name}</span>`;
+    btn.onclick=()=>{
+      selected=num;
+      document.querySelectorAll(".door").forEach(d=>{
+        d.classList.remove("selected");
+      });
+      btn.classList.add("selected");
+      document.getElementById("enterBtn").disabled=false;
+    };
+    holder.appendChild(btn);
+  });
+}
+
+function start() {
+  if(!selected)return;
+  step=0;
+  renderStep();
+  show("journey");
+}
+
+function formatParagraphs(text) {
+  return text.trim().split(/\n\s*\n/).map(p=>
+    `<p>${p.trim()}</p>`
+  ).join("");
+}
+
+function saveCurrentAnswers() {
+  if(step!==1||!selected)return;
+  const fields=document.querySelectorAll("[data-answer]");
+  answers[selected]=Array.from(fields).map(f=>f.value);
+  try {
+    localStorage.setItem("aurore_portes_answers",JSON.stringify(answers));
+  } catch(e) {}
+}
+
+function renderStep() {
+  const d=data[selected];
+  const label=document.getElementById("stepLabel");
+  const title=document.getElementById("stepTitle");
+  const content=document.getElementById("stepContent");
+  const next=document.getElementById("nextBtn");
+
+  document.getElementById("progress").innerHTML=
+    Array.from({length:totalSteps},(_,i)=>
+      `<span class="${i<=step?"done":""}"></span>`
+    ).join("");
+
+  if(step===0) {
+    label.textContent="Porte "+selected;
+    title.textContent=d.title;
+    content.innerHTML=formatParagraphs(d.message);
+    next.textContent="Explorer ce qui résonne en moi ✨";
+  }
+  if(step===1) {
+    label.textContent="Ton carnet intérieur";
+    title.textContent="Trois questions pour toi";
+    content.innerHTML=d.questions.map((q,i)=>`
+      <div class="question">
+        <label for="answer${i}">${i+1}. ${q}</label>
+        <textarea id="answer${i}" data-answer="${i}"
+          placeholder="Écris ce qui te vient, sans te juger…"></textarea>
+      </div>
+    `).join("")+
+    `<p class="small">Tes réponses restent sur cet appareil.
+    Tu peux les retrouver en revenant sur cette porte.</p>`;
+    (answers[selected]||[]).forEach((v,i)=>{
+      const el=document.getElementById("answer"+i);
+      if(el)el.value=v;
+    });
+    next.textContent="Découvrir mon rituel ✨";
+  }
+  if(step===2) {
+    label.textContent="Ton rituel de 3 minutes";
+    title.textContent=d.ritualTitle;
+    content.innerHTML=`<div class="ritual">
+      ${formatParagraphs(d.ritual)}
+    </div>`;
+    next.textContent="Recevoir mon affirmation ✨";
+  }
+  if(step===3) {
+    label.textContent="Les mots à garder";
+    title.textContent="Ton affirmation";
+    content.innerHTML=`
+      <div class="quote">« ${d.affirmation} »</div>
+      <button class="btn secondary" onclick="copyAffirmation()">
+        Copier mon affirmation
+      </button>
+      <p class="small center" id="copyStatus"></p>`;
+    next.textContent="Découvrir mon petit pas ✨";
+  }
+  if(step===4) {
+    label.textContent="Dans les prochaines 24 heures";
+    title.textContent="Un petit pas pour toi";
+    content.innerHTML=`
+      <p>${d.action}</p>
+      <div class="ornament"></div>
+      <p class="center">Tu n'as pas besoin de tout transformer
+      aujourd'hui. Commence simplement par ce qui te semble juste.</p>`;
+    next.textContent="Terminer mon voyage 🤎";
+  }
+}
+
+function nextStep() {
+  saveCurrentAnswers();
+  if(step<totalSteps-1) {
+    step++;
+    renderStep();
+    window.scrollTo({top:0,behavior:"smooth"});
+  } else {
+    const d=data[selected];
+    document.getElementById("offerTitle").textContent=
+      "Pour aller plus loin : "+d.offer;
+    document.getElementById("offerText").textContent=d.offerText;
+    show("ending");
+  }
+}
+
+function previousStep() {
+  saveCurrentAnswers();
+  if(step>0) {
+    step--;
+    renderStep();
+    window.scrollTo({top:0,behavior:"smooth"});
+  } else {
+    show("choose");
+  }
+}
+
+async function copyText(text) {
+  try {
+    await navigator.clipboard.writeText(text);
+    return true;
+  } catch(e) {
+    const ta=document.createElement("textarea");
+    ta.value=text;
+    ta.style.position="fixed";
+    ta.style.opacity="0";
+    document.body.appendChild(ta);
+    ta.select();
+    const ok=document.execCommand("copy");
+    ta.remove();
+    return ok;
+  }
+}
+
+async function copyAffirmation() {
+  const ok=await copyText(data[selected].affirmation);
+  document.getElementById("copyStatus").textContent=
+    ok?"Ton affirmation est copiée 🤎":"La copie n'a pas fonctionné.";
+}
+
+async function copyAnswers() {
+  const d=data[selected];
+  const responses=answers[selected]||[];
+  const text=[
+    "LES 5 PORTES DE TON ÂME",
+    "Porte "+selected+" — "+d.name,
+    "",
+    ...d.questions.flatMap((q,i)=>[
+      q,responses[i]||"(Pas de réponse)",""
+    ]),
+    "MON AFFIRMATION",
+    d.affirmation,
+    "",
+    "MON PETIT PAS",
+    d.action,
+    "",
+    "Les soins de lumière d'Aurore"
+  ].join("\n");
+  const ok=await copyText(text);
+  if(ok)alert("Ton carnet a été copié 🤎");
+  else alert("Impossible de copier le carnet.");
+}
+
+try {
+  const stored=JSON.parse(localStorage.getItem("aurore_portes_answers")||"{}");
+  if(stored&&typeof stored==="object")Object.assign(answers,stored);
+} catch(e) {}
+
+initDoors();
+</script>
+</body>
+</html>
