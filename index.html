@@ -5,10 +5,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#F5EDE1">
-<title>Les 5 Portes de ton Âme — Les soins de lumière d'Aurore</title>
+<title>Les 5 Portes de ton Âme | Les soins de lumière d'Aurore</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root {
@@ -20,15 +20,15 @@
   --gold:#D9B47E;
   --pale:#E6C79A;
 }
-* { box-sizing:border-box; }
-html { scroll-behavior:smooth; }
+* {box-sizing:border-box}
+html {scroll-behavior:smooth}
 body {
   margin:0;
   min-height:100vh;
   background:var(--ivory);
   color:var(--brown);
   font-family:"DM Sans",sans-serif;
-  line-height:1.65;
+  line-height:1.7;
 }
 body::before {
   content:"";
@@ -36,88 +36,89 @@ body::before {
   inset:0;
   pointer-events:none;
   background:
-    radial-gradient(circle at 10% 5%,rgba(230,199,154,.3),transparent 35%),
-    radial-gradient(circle at 90% 90%,rgba(168,116,67,.12),transparent 40%);
+    radial-gradient(circle at 15% 10%,rgba(230,199,154,.35),transparent 40%),
+    radial-gradient(circle at 85% 85%,rgba(168,116,67,.13),transparent 40%);
 }
 .app {
   position:relative;
-  width:min(100%,720px);
+  max-width:740px;
   margin:auto;
   padding:25px 18px 65px;
 }
 .brand {
   text-align:center;
   font-size:10px;
-  letter-spacing:2.4px;
+  letter-spacing:2px;
   text-transform:uppercase;
-  margin-bottom:25px;
+  margin-bottom:28px;
 }
 h1,h2,h3 {
   font-family:"Cormorant Garamond",serif;
-  line-height:1.1;
   font-weight:600;
+  line-height:1.15;
 }
-h1 { font-size:clamp(44px,9vw,68px); margin:12px 0; }
-h2 { font-size:clamp(36px,7vw,52px); margin:12px 0; }
-h3 { font-size:28px; margin:12px 0; }
-p { margin:12px 0; }
-.small { font-size:13px; opacity:.75; }
-.center { text-align:center; }
-.gold { color:var(--copper); }
+h1 {font-size:clamp(45px,9vw,70px);margin:12px 0}
+h2 {font-size:clamp(35px,7vw,52px);margin:12px 0}
+h3 {font-size:30px;margin:12px 0}
+p {margin:13px 0}
+.center {text-align:center}
+.small {font-size:13px;opacity:.8}
 .star {
-  color:var(--copper);
-  font-size:26px;
-  letter-spacing:9px;
   text-align:center;
+  color:var(--copper);
+  font-size:24px;
+  letter-spacing:9px;
 }
 .panel {
-  background:rgba(251,246,238,.88);
-  border:1px solid rgba(168,116,67,.28);
-  border-radius:24px;
-  padding:clamp(23px,5vw,42px);
-  box-shadow:0 12px 45px rgba(74,48,34,.07);
+  background:rgba(251,246,238,.93);
+  border:1px solid rgba(168,116,67,.3);
+  border-radius:25px;
+  padding:clamp(23px,5vw,45px);
   margin:20px 0;
+  box-shadow:0 15px 50px rgba(74,48,34,.07);
 }
 .ornament {
-  width:95px;
+  width:100px;
   height:1px;
-  margin:22px auto;
   background:linear-gradient(90deg,transparent,var(--copper),transparent);
+  margin:24px auto;
 }
 .btn {
-  display:inline-flex;
+  display:flex;
   align-items:center;
   justify-content:center;
-  gap:8px;
   width:100%;
-  padding:15px 20px;
-  border-radius:50px;
+  min-height:51px;
+  padding:14px 20px;
+  margin-top:13px;
   border:1px solid var(--brown);
+  border-radius:50px;
   background:var(--brown);
   color:var(--light);
-  font-family:"DM Sans",sans-serif;
-  font-size:13px;
-  font-weight:600;
+  font:600 13px "DM Sans",sans-serif;
+  text-align:center;
+  text-decoration:none;
   cursor:pointer;
   transition:transform .2s,background .2s;
-  text-decoration:none;
-  margin-top:12px;
 }
-.btn:active { transform:scale(.98); }
+.btn:hover {background:var(--dark)}
+.btn:active {transform:scale(.98)}
+.btn:disabled {opacity:.45;cursor:not-allowed}
 .btn.secondary {
   background:transparent;
-  color:var(--brown);
   border-color:var(--copper);
+  color:var(--brown);
 }
+.btn.secondary:hover {background:rgba(168,116,67,.08)}
 .btn:focus-visible,.door:focus-visible,textarea:focus-visible {
   outline:3px solid var(--copper);
   outline-offset:3px;
 }
-.screen { display:none; animation:appear .45s ease both; }
-.screen.active { display:block; }
+.screen {display:none;animation:appear .45s ease both}
+.screen.active {display:block}
 @keyframes appear {
-  from { opacity:0; transform:translateY(15px); }
-  to { opacity:1; transform:translateY(0); }
+  from {opacity:0;transform:translateY(15px)}
+  to {opacity:1;transform:translateY(0)}
 }
 .doors {
   display:grid;
@@ -126,12 +127,11 @@ p { margin:12px 0; }
   margin:25px 0;
 }
 .door {
-  position:relative;
   min-height:175px;
   background:linear-gradient(145deg,#FBF6EE,#EAD8BE);
   border:1px solid var(--gold);
   border-radius:90px 90px 15px 15px;
-  padding:25px 12px 16px;
+  padding:25px 10px 16px;
   text-align:center;
   color:var(--brown);
   cursor:pointer;
@@ -143,34 +143,28 @@ p { margin:12px 0; }
   box-shadow:0 12px 30px rgba(168,116,67,.18),
     inset 0 0 0 5px rgba(255,255,255,.35);
 }
-.door.selected { outline:2px solid var(--copper); }
-.door .symbol { display:block; font-size:25px; color:var(--copper); }
+.door.selected {outline:2px solid var(--copper)}
+.door .symbol {display:block;font-size:25px;color:var(--copper)}
 .door .num {
   display:block;
   font:600 54px "Cormorant Garamond",serif;
 }
-.door .name { font-size:12px; }
+.door .name {font-size:12px}
 .door:last-child {
   grid-column:1/-1;
   max-width:240px;
   width:100%;
   margin:auto;
 }
-.progress {
-  display:flex;
-  gap:6px;
-  margin:20px 0 28px;
-}
+.progress {display:flex;gap:6px;margin:20px 0 28px}
 .progress span {
   flex:1;
   height:4px;
   background:#E4D5C4;
   border-radius:5px;
 }
-.progress span.done { background:var(--copper); }
-.question {
-  margin:25px 0;
-}
+.progress span.done {background:var(--copper)}
+.question {margin:25px 0}
 .question label {
   display:block;
   font-size:14px;
@@ -198,7 +192,6 @@ textarea {
   font:italic 600 29px/1.3 "Cormorant Garamond",serif;
   text-align:center;
   padding:22px 8px;
-  color:var(--brown);
 }
 .tag {
   font-size:11px;
@@ -207,6 +200,17 @@ textarea {
   color:var(--copper);
   font-weight:600;
 }
+.offer {
+  margin-top:30px;
+  padding:26px 20px;
+  border-radius:18px;
+  border:1px solid rgba(168,116,67,.3);
+  background:linear-gradient(160deg,#F7EBDD,#FBF6EE);
+  text-align:left;
+}
+.offer h3 {text-align:center}
+.offer .tag {text-align:center}
+.offer p {font-size:14px}
 .footer {
   text-align:center;
   font-size:11px;
@@ -214,10 +218,10 @@ textarea {
   margin-top:45px;
 }
 @media(min-width:600px) {
-  .doors { grid-template-columns:repeat(5,1fr); }
-  .door { min-height:170px; padding:24px 6px 14px; }
-  .door .num { font-size:42px; }
-  .door:last-child { grid-column:auto; }
+  .doors {grid-template-columns:repeat(5,1fr)}
+  .door {min-height:170px;padding:24px 6px 14px}
+  .door .num {font-size:42px}
+  .door:last-child {grid-column:auto}
 }
 @media(prefers-reduced-motion:reduce) {
   *,*::before,*::after {
@@ -237,7 +241,7 @@ textarea {
       <div class="star">✧ ✦ ✧</div>
       <h1>Les 5 Portes<br>de ton Âme</h1>
       <div class="ornament"></div>
-      <p style="font-family:'Cormorant Garamond',serif;font-size:24px">
+      <p style="font:500 25px/1.3 'Cormorant Garamond',serif">
         Une parenthèse pour t'écouter, te retrouver
         et avancer à ton rythme.
       </p>
@@ -292,6 +296,7 @@ textarea {
       <div class="star">✧ ✦ ✧</div>
       <h2>Et maintenant,<br>qu'est-ce que tu choisis pour toi ?</h2>
       <div class="ornament"></div>
+
       <p>Tu viens de prendre quelques minutes pour t'écouter.</p>
       <p>Peut-être qu'une question t'a fait réfléchir,
       qu'une phrase a résonné ou que tu as simplement réalisé
@@ -299,12 +304,22 @@ textarea {
       <p>Garde ce qui te parle. Laisse le reste.</p>
       <p>Tu n'as pas besoin de tout changer aujourd'hui.
       Un petit pas, c'est déjà un mouvement. 🤎</p>
-      <div class="ornament"></div>
-      <h3 id="offerTitle"></h3>
-      <p id="offerText"></p>
-      <button class="btn" onclick="copyAnswers()">
-        Copier mon carnet personnel
+
+      <button class="btn secondary" onclick="copyAnswers()">
+        📖 Copier mon carnet personnel
       </button>
+      <p class="small" id="notebookStatus" role="status"></p>
+
+      <div class="offer">
+        <div class="tag">Et si tu avais envie d'aller plus loin ?</div>
+        <h3 id="offerTitle"></h3>
+        <div id="offerText"></div>
+        <a id="offerLink" class="btn"
+          href="#" target="_blank" rel="noopener noreferrer">
+          Découvrir mon accompagnement ✨
+        </a>
+      </div>
+
       <button class="btn secondary" onclick="show('choose')">
         Explorer une autre porte
       </button>
@@ -313,11 +328,17 @@ textarea {
 
   <footer class="footer">
     © Les soins de lumière d'Aurore<br>
-    Un espace d'introspection, dans le respect de ton libre arbitre.
+    Un espace d'introspection dans le respect de ton libre arbitre.
   </footer>
 </main>
 
 <script>
+const URLS = {
+  retour:"https://www.lessoinsdelumieredaurore.com/service-page/retour-%C3%A0-soi",
+  ameoscope:"https://www.lessoinsdelumieredaurore.com/page-d-article/%C3%A2meoscope",
+  alchimie:"https://www.lessoinsdelumieredaurore.com/service-page/alchimie-cellulaire"
+};
+
 const data = {
   "22": {
     name:"Me libérer",
@@ -354,8 +375,20 @@ const data = {
     affirmation:"Je m'autorise à poser mes limites. Je peux aimer les autres sans m'oublier.",
     action:"Refuse une petite demande que tu n'as pas réellement envie ou la capacité d'accepter, sans te justifier longuement.",
     offer:"Retour à soi",
-    offerText:"Un soin énergétique à distance pour t'offrir une parenthèse de recentrage et prendre du temps pour toi."
+    offerText:`Tu as peut-être l'habitude de tout gérer, de tout porter,
+    de toujours être disponible pour les autres.
+
+    Et si, pour une fois, tu t'accordais un espace où tu n'as
+    rien à faire pour personne ?
+
+    C'est aussi pour ces moments-là que j'ai créé Retour à soi :
+    un soin énergétique à distance, pensé comme une parenthèse
+    pour te recentrer, souffler et te retrouver.
+
+    Sans pression, sans attente. Juste un moment pour toi.`,
+    url:URLS.retour
   },
+
   "33": {
     name:"M'écouter",
     title:"J'apprends à écouter ma voix intérieure",
@@ -390,8 +423,23 @@ const data = {
     affirmation:"Je peux m'écouter, même lorsque je doute. Ma voix mérite d'être entendue.",
     action:"Prends une petite décision uniquement à partir de tes propres préférences.",
     offer:"ÂmeOscope",
-    offerText:"Une cartographie intuitive et personnalisée de ton monde intérieur pour explorer tes questionnements, tes blocages et tes ressources."
+    offerText:`Tu connais peut-être cette sensation de tourner
+    en rond dans tes pensées, de sentir que quelque chose
+    doit changer sans réussir à comprendre quoi.
+
+    Parfois, ce qui manque, ce n'est pas une réponse de plus.
+    C'est un autre regard sur ce que tu traverses.
+
+    C'est dans cet esprit que j'ai créé l'ÂmeOscope :
+    une cartographie intuitive et personnalisée de ton monde
+    intérieur, réalisée grâce à ma médiumnité.
+
+    Un voyage pour explorer tes questionnements, tes blocages,
+    tes ressources et les schémas qui se répètent, afin
+    de retrouver davantage de clarté sur ton propre chemin.`,
+    url:URLS.ameoscope
   },
+
   "44": {
     name:"Reconnaître ma valeur",
     title:"Je reconnais ma valeur",
@@ -425,8 +473,22 @@ const data = {
     affirmation:"Ma valeur ne dépend pas de ce que j'accomplis. J'ai le droit de prendre ma place.",
     action:"Accepte un compliment sans le minimiser. Un simple « merci » suffit.",
     offer:"Alchimie Cellulaire",
-    offerText:"Un accompagnement énergétique et introspectif pour explorer les croyances et schémas que tu souhaites transformer."
+    offerText:`Tu as peut-être passé beaucoup de temps à essayer
+    d'être à la hauteur, à ne pas décevoir, à faire toujours plus.
+
+    Et même lorsque tu sais que tu as de la valeur,
+    certaines croyances continuent parfois de prendre
+    beaucoup de place.
+
+    Alchimie Cellulaire est un accompagnement que j'ai créé
+    pour explorer ces schémas, ces croyances et ce que
+    tu souhaites transformer dans ton rapport à toi-même.
+
+    Un espace pour t'accorder le droit d'évoluer,
+    sans avoir à devenir quelqu'un d'autre pour mériter ta place.`,
+    url:URLS.alchimie
   },
+
   "26": {
     name:"Retrouver mon chemin",
     title:"Je reconnais le chemin parcouru",
@@ -459,8 +521,24 @@ const data = {
     affirmation:"Je respecte mon rythme. Mon chemin a de la valeur, même lorsqu'il ne ressemble pas à celui des autres.",
     action:"Écris trois petites victoires récentes dans ton téléphone.",
     offer:"ÂmeOscope",
-    offerText:"Un voyage intuitif à travers ton monde intérieur pour mieux comprendre ce que tu traverses et retrouver tes propres repères."
+    offerText:`Quand tu as l'impression de stagner,
+    tu peux finir par oublier tout ce que tu as déjà traversé.
+
+    Et parfois, tu te poses tellement de questions sur
+    ta direction que tu ne sais plus vraiment où regarder.
+
+    L'ÂmeOscope est une invitation à explorer ton monde
+    intérieur sous un autre angle.
+
+    À travers une lecture intuitive personnalisée,
+    je mets en lumière les ressources, les blocages
+    et les schémas qui émergent dans ta lecture.
+
+    Pour t'aider à mettre du sens sur ton parcours
+    et à avancer avec des repères qui te ressemblent.`,
+    url:URLS.ameoscope
   },
+
   "76": {
     name:"Accueillir le changement",
     title:"Je m'autorise à évoluer",
@@ -498,7 +576,23 @@ const data = {
     affirmation:"J'ai le droit de changer. Je peux avancer sans renier la personne que j'ai été.",
     action:"Fais un petit geste concret en direction de ce que tu souhaites accueillir.",
     offer:"Alchimie Cellulaire",
-    offerText:"Un espace d'accompagnement pour explorer ce que tu souhaites laisser derrière toi et les nouvelles intentions que tu veux poser."
+    offerText:`Tu sens peut-être que certaines choses
+    ne te correspondent plus.
+
+    Pourtant, entre ce que tu ressens au fond de toi
+    et ce que tu oses réellement changer,
+    il peut y avoir beaucoup de peurs et de résistances.
+
+    C'est aussi ce que nous pouvons explorer
+    à travers Alchimie Cellulaire.
+
+    Un accompagnement pour prendre conscience
+    des croyances et des schémas qui t'accompagnent
+    encore, et ouvrir un espace à ce que tu souhaites
+    construire aujourd'hui.
+
+    À ton rythme, avec ton propre libre arbitre.`,
+    url:URLS.alchimie
   }
 };
 
@@ -612,7 +706,7 @@ function renderStep() {
       <button class="btn secondary" onclick="copyAffirmation()">
         Copier mon affirmation
       </button>
-      <p class="small center" id="copyStatus"></p>`;
+      <p class="small center" id="copyStatus" role="status"></p>`;
     next.textContent="Découvrir mon petit pas ✨";
   }
   if(step===4) {
@@ -635,9 +729,12 @@ function nextStep() {
     window.scrollTo({top:0,behavior:"smooth"});
   } else {
     const d=data[selected];
-    document.getElementById("offerTitle").textContent=
-      "Pour aller plus loin : "+d.offer;
-    document.getElementById("offerText").textContent=d.offerText;
+    document.getElementById("offerTitle").textContent=d.offer;
+    document.getElementById("offerText").innerHTML=
+      formatParagraphs(d.offerText);
+    const link=document.getElementById("offerLink");
+    link.href=d.url;
+    link.textContent="Découvrir "+d.offer+" ✨";
     show("ending");
   }
 }
@@ -695,13 +792,18 @@ async function copyAnswers() {
     "Les soins de lumière d'Aurore"
   ].join("\n");
   const ok=await copyText(text);
-  if(ok)alert("Ton carnet a été copié 🤎");
-  else alert("Impossible de copier le carnet.");
+  document.getElementById("notebookStatus").textContent=
+    ok?"Ton carnet a été copié 🤎":
+    "Impossible de copier le carnet. Réessaie.";
 }
 
 try {
-  const stored=JSON.parse(localStorage.getItem("aurore_portes_answers")||"{}");
-  if(stored&&typeof stored==="object")Object.assign(answers,stored);
+  const stored=JSON.parse(
+    localStorage.getItem("aurore_portes_answers")||"{}"
+  );
+  if(stored&&typeof stored==="object") {
+    Object.assign(answers,stored);
+  }
 } catch(e) {}
 
 initDoors();
